@@ -1,113 +1,423 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currículo - Davi Catapirra Dias Pinheiro</title>
+    <meta name="description" content="Currículo de Davi Catapirra Dias Pinheiro, estudante do Ensino Médio Técnico em Internet das Coisas (IoT).">
+    <meta name="color-scheme" content="light dark">
+    <title>Currículo | Davi Catapirra Dias Pinheiro</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --page: #eef2f7;
+            --paper: #ffffff;
+            --ink: #1d2939;
+            --muted: #5e6b7e;
+            --line: #e1e7ef;
+            --accent: #0f766e;
+            --accent-strong: #115e59;
+            --accent-soft: #e6f5f2;
+            --hero: #101d35;
+            --hero-muted: #c4d2e5;
+            --chip: #f1f5f9;
+            --shadow: 0 24px 70px rgba(24, 39, 75, .12);
+        }
+
+        html[data-theme="dark"] {
+            color-scheme: dark;
+            --page: #0b1220;
+            --paper: #121d2e;
+            --ink: #edf3fb;
+            --muted: #adbbce;
+            --line: #2a3a50;
+            --accent: #6ee7d8;
+            --accent-strong: #a3f5e9;
+            --accent-soft: #173b3b;
+            --hero: #080f1d;
+            --hero-muted: #c1cfe0;
+            --chip: #1b2a3e;
+            --shadow: 0 24px 70px rgba(0, 0, 0, .28);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            padding: 36px 18px;
+            background: var(--page);
+            color: var(--ink);
+            font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.65;
+            transition: background-color .2s ease, color .2s ease;
+        }
+        a { color: inherit; text-underline-offset: 3px; }
+        a:focus-visible, button:focus-visible { outline: 3px solid #38bdf8; outline-offset: 3px; }
+
+        .toolbar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            max-width: 1040px;
+            margin: 0 auto 14px;
+        }
+        .toolbar button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--paper);
+            color: var(--ink);
+            font: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, .04);
+            transition: transform .15s ease, border-color .15s ease;
+        }
+        .toolbar button:hover { transform: translateY(-1px); border-color: var(--accent); }
+
+        .resume {
+            width: min(100%, 1040px);
+            margin: 0 auto;
+            overflow: hidden;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+        }
+        .hero {
+            position: relative;
+            isolation: isolate;
+            padding: 46px 52px 40px;
+            overflow: hidden;
+            background: var(--hero);
+            color: #fff;
+        }
+        .hero::before, .hero::after {
+            position: absolute;
+            z-index: -1;
+            content: "";
+            border: 1px solid rgba(110, 231, 216, .22);
+            border-radius: 50%;
+        }
+        .hero::before { width: 360px; height: 360px; right: -90px; top: -210px; }
+        .hero::after { width: 260px; height: 260px; right: 8px; top: -150px; }
+        .eyebrow {
+            display: inline-block;
+            margin: 0 0 12px;
+            color: #80e4d7;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+        h1 {
+            max-width: 760px;
+            margin: 0;
+            font-size: clamp(30px, 5vw, 46px);
+            line-height: 1.12;
+            letter-spacing: -.035em;
+        }
+        .headline {
+            margin: 14px 0 0;
+            color: var(--hero-muted);
+            font-size: 17px;
+        }
+        .focus-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+        .focus-tags span {
+            padding: 6px 11px;
+            border: 1px solid rgba(255,255,255,.17);
+            border-radius: 999px;
+            background: rgba(255,255,255,.07);
+            color: #f5fbff;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 22px;
+            margin-top: 28px;
+            color: var(--hero-muted);
+            font-size: 13px;
+        }
+        .contact-row a { color: #fff; text-decoration-color: rgba(255,255,255,.45); }
+        .contact-item { display: inline-flex; align-items: center; gap: 8px; }
+        .contact-item .symbol { color: #80e4d7; font-size: 15px; }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, .82fr) minmax(0, 1.5fr);
+            gap: 42px;
+            padding: 40px 52px 46px;
+        }
+        .column { min-width: 0; }
+        .section { margin: 0 0 32px; break-inside: avoid; }
+        .section:last-child { margin-bottom: 0; }
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin: 0 0 14px;
+            color: var(--ink);
+            font-size: 15px;
+            font-weight: 850;
+            letter-spacing: .045em;
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
+        .section-heading::before {
+            width: 4px;
+            height: 22px;
+            flex: 0 0 4px;
+            border-radius: 10px;
+            background: var(--accent);
+            content: "";
+        }
+        p { margin: 0 0 11px; }
+        .muted { color: var(--muted); }
+        .entry-title { margin: 0 0 5px; font-size: 16px; line-height: 1.4; }
+        .detail { margin: 0; color: var(--muted); font-size: 13px; }
+        .skill-list, .plain-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+        .skill-list li {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 11px 12px;
+            border: 1px solid var(--line);
+            border-radius: 11px;
+            background: var(--paper);
+        }
+        .skill-name { font-weight: 650; }
+        .level {
+            flex: 0 0 auto;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent-strong);
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .plain-list li { position: relative; padding-left: 18px; color: var(--muted); }
+        .plain-list li::before {
+            position: absolute;
+            top: .66em;
+            left: 1px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            content: "";
+        }
+        .language-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .language-row:last-child { border-bottom: 0; }
+        .language-row span:last-child { color: var(--muted); font-size: 13px; }
+        .summary {
+            padding: 18px 20px;
+            border-left: 3px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            background: var(--accent-soft);
+        }
+        .summary p:last-child { margin-bottom: 0; }
+        .interest-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .interest-grid span {
+            padding: 7px 11px;
+            border-radius: 8px;
+            background: var(--chip);
+            color: var(--ink);
+            font-size: 13px;
+        }
+        .footer {
+            padding: 17px 52px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 12px;
+            text-align: center;
+        }
+
+        @media (max-width: 720px) {
+            body { padding: 14px 10px; }
+            .resume { border-radius: 16px; }
+            .hero { padding: 34px 25px 30px; }
+            .headline { font-size: 15px; }
+            .contact-row { display: grid; gap: 9px; }
+            .content-grid { grid-template-columns: 1fr; gap: 0; padding: 30px 25px 34px; }
+            .column + .column { padding-top: 30px; margin-top: 30px; border-top: 1px solid var(--line); }
+            .footer { padding: 16px 25px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+        }
+        @page { size: A4; margin: 12mm; }
+        @media print {
+            :root, html[data-theme="dark"] {
+                color-scheme: light;
+                --page: #fff;
+                --paper: #fff;
+                --ink: #1d2939;
+                --muted: #526071;
+                --line: #dce3ec;
+                --accent: #0f766e;
+                --accent-strong: #115e59;
+                --accent-soft: #e6f5f2;
+                --hero: #101d35;
+                --hero-muted: #c4d2e5;
+                --chip: #f1f5f9;
+                --shadow: none;
+            }
+            body { padding: 0; background: #fff; font-size: 10pt; }
+            .toolbar { display: none !important; }
+            .resume { width: 100%; border: 0; border-radius: 0; box-shadow: none; }
+            .hero { padding: 25px 30px 23px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            h1 { font-size: 30pt; }
+            .content-grid { gap: 26px; padding: 25px 30px 28px; }
+            .section { margin-bottom: 21px; }
+            .section-heading { margin-bottom: 10px; font-size: 10pt; }
+            .skill-list { gap: 6px; }
+            .skill-list li { padding: 7px 9px; }
+            .summary, .level, .interest-grid span { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            a { text-decoration: none; }
+            .footer { padding: 12px 30px; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Davi Catapirra Dias Pinheiro</h1>
-        <p>Estudante do Ensino Médio Técnico em Internet das Coisas (IoT)</p>
-        <p>
-            São Paulo - SP<br>
-            Telefone: (11) 99181-1981<br>
-            E-mail: <a href="mailto:dcatapirra@gmail.com">dcatapirra@gmail.com</a>
-        </p>
-    </header>
+    <nav class="toolbar" aria-label="Ferramentas do currículo">
+        <button type="button" id="theme-toggle" aria-pressed="false" title="Alternar aparência">
+            <span aria-hidden="true" id="theme-icon">☾</span><span id="theme-label">Modo escuro</span>
+        </button>
+        <button type="button" id="print-button" title="Imprimir ou salvar como PDF">
+            <span aria-hidden="true">⤓</span><span>Imprimir / Salvar PDF</span>
+        </button>
+    </nav>
 
-    <hr>
+    <article class="resume" aria-label="Currículo de Davi Catapirra Dias Pinheiro">
+        <header class="hero">
+            <p class="eyebrow">Currículo profissional</p>
+            <h1>Davi Catapirra Dias Pinheiro</h1>
+            <p class="headline">Estudante do Ensino Médio Técnico em Internet das Coisas (IoT)</p>
+            <div class="focus-tags" aria-label="Áreas profissionais de interesse">
+                <span>Tecnologia</span>
+                <span>Comunicação</span>
+                <span>Jornalismo</span>
+                <span>Jovem Aprendiz</span>
+            </div>
+            <div class="contact-row" aria-label="Informações de contato">
+                <span class="contact-item"><span class="symbol" aria-hidden="true">⌖</span>São Paulo - SP</span>
+                <span class="contact-item"><span class="symbol" aria-hidden="true">☎</span><a href="tel:+5511991811981">(11) 99181-1981</a></span>
+                <span class="contact-item"><span class="symbol" aria-hidden="true">✉</span><a href="mailto:dcatapirra@gmail.com">dcatapirra@gmail.com</a></span>
+            </div>
+        </header>
 
-    <main>
-        <section>
-            <h2>Objetivo Profissional</h2>
-            <p>
-                Busco uma oportunidade como Jovem Aprendiz nas áreas de tecnologia,
-                comunicação ou jornalismo. Tenho interesse em aprender, desenvolver
-                novas habilidades e contribuir com a equipe, aplicando os conhecimentos
-                adquiridos durante minha formação e ampliando minha experiência profissional.
-            </p>
-        </section>
+        <main class="content-grid">
+            <aside class="column" aria-label="Formação e conhecimentos">
+                <section class="section">
+                    <h2 class="section-heading">Formação acadêmica</h2>
+                    <h3 class="entry-title">Ensino Médio Técnico em Internet das Coisas (IoT)</h3>
+                    <p class="detail">Série atual: 3º ano</p>
+                </section>
 
-        <hr>
+                <section class="section">
+                    <h2 class="section-heading">Conhecimentos técnicos</h2>
+                    <ul class="skill-list">
+                        <li><span class="skill-name">Python</span><span class="level">Básico</span></li>
+                        <li><span class="skill-name">HTML</span><span class="level">Básico</span></li>
+                        <li><span class="skill-name">Lógica e fundamentos de programação</span><span class="level">Em desenvolvimento</span></li>
+                        <li><span class="skill-name">IoT e eletrônica</span><span class="level">Prática em projetos</span></li>
+                    </ul>
+                </section>
 
-        <section>
-            <h2>Formação Acadêmica</h2>
-            <h3>Ensino Médio Técnico em Internet das Coisas (IoT)</h3>
-            <p>Série atual: 3º ano</p>
-        </section>
+                <section class="section">
+                    <h2 class="section-heading">Idiomas</h2>
+                    <div class="language-row"><span>Português</span></div>
+                    <div class="language-row"><span>Inglês</span><span>Avançado</span></div>
+                    <div class="language-row"><span>Espanhol</span><span>Básico</span></div>
+                </section>
+            </aside>
 
-        <hr>
+            <div class="column">
+                <section class="section">
+                    <h2 class="section-heading">Objetivo profissional</h2>
+                    <div class="summary">
+                        <p>Busco uma oportunidade como Jovem Aprendiz nas áreas de tecnologia, comunicação ou jornalismo. Tenho interesse em aprender, desenvolver novas habilidades e contribuir com a equipe, aplicando os conhecimentos adquiridos durante minha formação e ampliando minha experiência profissional.</p>
+                    </div>
+                </section>
 
-        <section>
-            <h2>Conhecimentos Técnicos</h2>
-            <ul>
-                <li>Python: conhecimentos básicos.</li>
-                <li>HTML: conhecimentos básicos.</li>
-                <li>Programação: desenvolvendo conhecimentos em lógica e fundamentos de programação.</li>
-                <li>IoT e eletrônica: prática em projetos relacionados à formação técnica.</li>
-            </ul>
-        </section>
+                <section class="section">
+                    <h2 class="section-heading">Projetos escolares e tecnológicos</h2>
+                    <p>Prática em projetos relacionados à Internet das Coisas (IoT) e à eletrônica no contexto da formação técnica. Essas atividades permitem aplicar os conhecimentos estudados e continuar aprendendo na área de tecnologia.</p>
+                </section>
 
-        <hr>
+                <section class="section">
+                    <h2 class="section-heading">Experiência profissional</h2>
+                    <h3 class="entry-title">Em busca da primeira oportunidade</h3>
+                    <p class="muted">Busco minha primeira experiência profissional, com disposição para aprender, desenvolver novas competências e aplicar na prática os conhecimentos adquiridos durante minha formação.</p>
+                </section>
 
-        <section>
-            <h2>Áreas de Interesse</h2>
-            <ul>
-                <li>Tecnologia da Informação e Internet das Coisas (IoT).</li>
-                <li>Programação e desenvolvimento de conhecimentos técnicos.</li>
-                <li>Comunicação e jornalismo.</li>
-            </ul>
-        </section>
+                <section class="section">
+                    <h2 class="section-heading">Áreas de interesse</h2>
+                    <div class="interest-grid">
+                        <span>Tecnologia da Informação</span>
+                        <span>Internet das Coisas (IoT)</span>
+                        <span>Programação</span>
+                        <span>Comunicação</span>
+                        <span>Jornalismo</span>
+                        <span>Inovação</span>
+                    </div>
+                </section>
 
-        <hr>
+                <section class="section">
+                    <h2 class="section-heading">Competências e desenvolvimento</h2>
+                    <ul class="plain-list">
+                        <li>Interesse por tecnologia, programação e inovação.</li>
+                        <li>Interesse em comunicação e jornalismo.</li>
+                        <li>Disposição para aprender novas ferramentas e conhecimentos.</li>
+                    </ul>
+                </section>
+            </div>
+        </main>
 
-        <section>
-            <h2>Projetos Escolares e Tecnológicos</h2>
-            <p>
-                Prática em projetos relacionados à Internet das Coisas (IoT) e à eletrônica
-                no contexto da formação técnica. Essas atividades permitem aplicar os
-                conhecimentos estudados e continuar aprendendo na área de tecnologia.
-            </p>
-        </section>
+        <footer class="footer">
+            Davi Catapirra Dias Pinheiro · Currículo profissional
+        </footer>
+    </article>
 
-        <hr>
+    <script>
+        (() => {
+            const root = document.documentElement;
+            const themeButton = document.getElementById('theme-toggle');
+            const themeLabel = document.getElementById('theme-label');
+            const themeIcon = document.getElementById('theme-icon');
+            const printButton = document.getElementById('print-button');
 
-        <section>
-            <h2>Experiência Profissional</h2>
-            <p>
-                Em busca da primeira oportunidade profissional, com disposição para aprender,
-                desenvolver novas competências e aplicar na prática os conhecimentos adquiridos
-                durante minha formação.
-            </p>
-        </section>
+            function setTheme(theme) {
+                const isDark = theme === 'dark';
+                root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+                themeButton.setAttribute('aria-pressed', String(isDark));
+                themeLabel.textContent = isDark ? 'Modo claro' : 'Modo escuro';
+                themeIcon.textContent = isDark ? '☀' : '☾';
+            }
 
-        <hr>
+            themeButton.addEventListener('click', () => {
+                const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                setTheme(nextTheme);
+            });
 
-        <section>
-            <h2>Competências e Interesses</h2>
-            <ul>
-                <li>Interesse por tecnologia, programação e inovação.</li>
-                <li>Interesse em comunicação e jornalismo.</li>
-                <li>Disposição para aprender novas ferramentas e conhecimentos.</li>
-            </ul>
-        </section>
+            printButton.addEventListener('click', () => window.print());
 
-        <hr>
-
-        <section>
-            <h2>Idiomas</h2>
-            <ul>
-                <li>Português.</li>
-                <li>Inglês: avançado.</li>
-                <li>Espanhol: básico.</li>
-            </ul>
-        </section>
-    </main>
-
-    <footer>
-        <hr>
-        <p>Currículo de Davi Catapirra Dias Pinheiro</p>
-    </footer>
+            const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(preferredTheme ? 'dark' : 'light');
+        })();
+    </script>
 </body>
 </html>
